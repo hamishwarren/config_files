@@ -1,6 +1,7 @@
-fortune -s
-echo
-
+if command -v fortune &> null
+then
+    fortune -s
+fi
 
 # Change defualt text editor to neovim
 export EDITOR=~/.local/bin/nvim.appimage
