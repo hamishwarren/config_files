@@ -4,7 +4,8 @@ then
 fi
 
 # Change defualt text editor to neovim
-export EDITOR=~/.local/bin/nvim.appimage
+export NVIMPATH=~/.local/bin/nvim
+export EDITOR=$NVIMPATH
 
 
 # Pyenv Configuration
@@ -18,7 +19,14 @@ fi
 
 # Add stuff to PATH
 path+=('~/shell_scripts')
-path+=('/usr/local/go/bin')
+# go
+# export GOPATH=~/go
+# path+=$GOPATH
+# path+=$GOPATH/bin
+# path+=('/usr/local/go/bin')
+# npm
+path+=('/usr/local/npm-packages/bin')
+
 export PATH
 
 
@@ -54,6 +62,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
 # Alias
+alias tmuxgo="~/shell_scripts/tmux_init.sh"
+alias l="ls --color=auto"
+alias l.='ls -d .* --color=auto'
 alias ls="ls --color=auto"
 alias ll="ls -alh --color=auto"
 alias la="ls -a --color=auto"
@@ -61,15 +72,21 @@ alias reload=". ~/.zshrc"
 alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
-alias vi=~/.local/bin/nvim.appimage
-alias nv=~/.local/bin/nvim.appimage
+alias .....="cd ../../../../"
+alias vi=$NVIMPATH
+alias nv=$NVIMPATH
 alias path="print -l $path"
 alias lines="wc -l * 2>>/dev/null"
+alias findf="~/shell_scripts/findf.sh"
 alias pipenvls="pipenv run pip list"
 alias defaultterm="sudo update-alternatives --config x-terminal-emulator"
 alias sshagent="eval `ssh-agent` && ssh-add -t 20"
 alias sshkill="kill $SSH_AGENT_PID"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# Rotamap stuff
+alias med='cd ~/hg/medirota'
+alias mob='cd ~/hg/mobile_api'
+alias chrome="google-chrome"
 # Database entry 
 alias dbc="sudo -i -u postgres psql"
 alias db="psql -U postgres"
@@ -97,3 +114,6 @@ PROMPT='%F{6}%n@%m%f in %F{3}%~%f ${vcs_info_msg_0_} $ '
 bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 
 
+
+export PNPM_HOME="/home/hamish/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
